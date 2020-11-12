@@ -1,9 +1,11 @@
-let cities = document.getElementById("cities");
-let image = document.getElementById("img");
-let newCity;
+$(document).ready(function () {
 
-$(document).ready(function (newCity) {
+    let cities = document.getElementById("cities");
+    let newCity;
+    let i = 0;
+
     $('#addBtn').click(function (e) {
+        i++;
         newCity = cities.value.trim();
 
         $.ajax({
@@ -14,30 +16,45 @@ $(document).ready(function (newCity) {
             },
             dataType: 'json',
             success: function (apiResponse) {
-                // var items = [];
-                console.log(apiResponse);
-                card = $("<form class='form '><div class='card col-lg-12'><button class='btn btn-danger px-1' id='btnRemove'>X</button>" + `${apiResponse.location.name} ${apiResponse.current.temperature}` + " °C" + "</div></from>");
-                card.appendTo('.form');
-                var silinecekCard = `${apiResponse.location.name}`
-                if (silinecekCard == newCity) {
-                    $(document).ready(function (e) {
-                        $('.btn-danger').click(function (e) {
-                            silinecekCard.Remove();
-                            console.log("silme işlemine gidiliyor", silinecekCard);
+                card = $("<div id='card" + i + "' class='card col-lg-2 my-2 mx-2'><button class='btn btn-outline-danger px-1 text-center'  data-id=" + i + " id='btnRemove" + i + "'>sil</button><img class='card-img-top' src=" + `${apiResponse.current.weather_icons[0]}` + ">" + `${apiResponse.location.name} ${apiResponse.current.temperature}` + " °C" + "</div>");
 
-                        });
-                    });
+                console.log("card ekleniyor");
 
-                    silinecekCard.Remove();
-                }
-                console.log(silinecekCard);
-
-
-
+                card.appendTo('.cities');
             }
+
+        });
+
+    });
+
+
+
+    //    $('[id^=btnRemove').click(function(e){ id si btnremove ile başlayan button click olduğunda 
+
+    $('body').on("click", "[id^=btnRemove]", function (e) {
+
+        let i = $(this).data("id");
+
+        $('#card' + i).remove();
+    });
+
+    // Tüm cardları temizleme
+
+    $(document).ready(function (e) {
+
+        $('#removeForm').click(function (e) {
+
+            document.getElementById('cities').value = '';
+
+            $(".card").remove();
         });
     });
+
+
+
 });
+
+
 
 // function cardRemove(silinecekCard){
 //     // silme işlemleri

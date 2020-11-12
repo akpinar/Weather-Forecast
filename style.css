@@ -1,24 +1,25 @@
 .form-group{
-    border-color:#8244cf;
+    height: auto;
+    width: auto;
+    border-color:#34baeb;
     border-style: solid;
     border-width: 5px;
-    height: 800px;
-    width: 800px;
     
 }
 
 .card{
-    width: 200px;
-    height: 200px;
-    border-width: 5px;
+    width: 275px;
+    border-width: 3px;
     border-style: solid;
-    border-color:coral;
+    border-color:#34baeb;
 }
 
-.btn-danger{
-    border-radius: 80px;
-    width: 15px;
+.btn-outline-danger{
+    position: absolute;
+    right: 0;
+    width: 20px;
     height: 15px;
+    text: center;
 }
 
 #cities{
@@ -31,4 +32,16 @@
 
 label{
     margin-top: 30px;
+}
+
+#removeForm{
+ margin-top: 20px;
+
+}
+.card-img-top{
+    width: 175px;
+    height: 150px;
+    margin: auto;
+    padding: 5px;
+    display: block;
 }
