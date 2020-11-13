@@ -17,9 +17,16 @@ $(document).ready(function () {
 
             dataType: 'json',
             success: function (apiResponse) {
-                card = $("<div id='card" + i + "' class='card col-lg-2 my-2 mx-2'><button class='btn btn-outline-danger px-1 text-center'  data-id=" + i + " id='btnRemove" + i + "'>sil</button><img class='card-img-top' src=" + `${apiResponse.current.weather_icons[0]}` + ">" + `${apiResponse.location.name} ${apiResponse.current.temperature}` + " °C" + "</div>");
+                
+                card = $("<div id='card" + i + "' class='card col-lg-2 my-2 mx-2 border border-info rounded'>"+
+                "<div class='float-right'><button type='button' class='close' data-dismis='modal' aria-label_'close' data-id=" + i + " id='btnRemove" + i + "'>x</button></div>"+
+                "<img class='card-img-top' src=" + `${apiResponse.current.weather_icons[0]}` + ">"+
+                "<h5 class='card-title text-center'>" +`${apiResponse.location.name}`+ "</h5>"+
+                "<p class='card-text text-center'>"+ `${apiResponse.current.temperature}` +"°C" + "</p>" +
+                "</div>");
                 card.appendTo('.cities');
             }
+            
 
         });
 
